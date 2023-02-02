@@ -1,0 +1,21 @@
+/* eslint-disable react/react-in-jsx-scope */
+import { HashRouter, Route, Routes } from 'react-router-dom';
+import Home from './Pages/Home';
+import NotFound from './Pages/NotFount';
+
+export function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  );
+}
+
+export function WrappedApp() {
+  return (
+    <HashRouter>
+      <App />
+    </HashRouter>
+  );
+}
