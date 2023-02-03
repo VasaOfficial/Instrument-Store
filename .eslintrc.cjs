@@ -18,5 +18,6 @@ module.exports = {
   plugins: ['react', 'prettier'],
   rules: {
     'react/react-in-jsx-scope': 0,
+    'no-trailing-spaces': 'off',
   },
 };
