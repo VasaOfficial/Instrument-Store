@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { WrappedApp } from './App';
+
+import LandingPage from './Pages/Landing/index';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <WrappedApp />
+    <LandingPage />
   </React.StrictMode>
 );
