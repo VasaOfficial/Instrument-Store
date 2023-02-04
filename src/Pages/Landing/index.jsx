@@ -1,6 +1,7 @@
 /* eslint-disable react/button-has-type */
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 // styles
 const BackgroundContainer = styled.div`
@@ -46,12 +47,14 @@ function LandingPage() {
   return (
     <BackgroundContainer>
       <TextContainer>
-        <h1>Welcome To Modern Instrument Store</h1> <br />
+        <h1>Welcome To Music Emporium</h1> <br />
         The Instruments Business, where latest instruments are available to any
         parts of the world.
         <br />
       </TextContainer>
-      <StyledButton>Check Now!</StyledButton>
+      <Link to="/home">
+        <StyledButton>Check Now!</StyledButton>
+      </Link>
     </BackgroundContainer>
   );
 }

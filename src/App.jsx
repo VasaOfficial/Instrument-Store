@@ -1,21 +1,14 @@
-/* eslint-disable react/react-in-jsx-scope */
-import { HashRouter, Route, Routes } from 'react-router-dom';
-import Home from './Pages/Home';
+import { Route, Routes } from 'react-router-dom';
+import HomePage from './Pages/Home/index';
 import NotFound from './Pages/NotFount';
+import LandingPage from './Pages/Landing/index';
 
 export function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route exact path="/" element={<LandingPage />} />
+      <Route path="/home" element={<HomePage />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
-  );
-}
-
-export function WrappedApp() {
-  return (
-    <HashRouter>
-      <App />
-    </HashRouter>
   );
 }
