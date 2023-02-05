@@ -97,14 +97,17 @@ function HomePage() {
         <Card
           image="https://images.unsplash.com/photo-1460036521480-ff49c08c2781?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1173&q=80"
           text="Stringed instruments"
+          link="/stringed"
         />
         <Card
           image="https://images.unsplash.com/photo-1520614233149-f698fd8379e4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1605&q=80"
           text="Wind instruments"
+          link="/wind"
         />
         <Card
           image="https://images.unsplash.com/photo-1571327073757-71d13c24de30?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
           text="Percussion instruments"
+          link="/percussion"
         />
       </BottomContainer>
     </>

@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const CardContainer = styled.div`
   background-color: #fff;
@@ -41,9 +42,14 @@ const CardText = styled.p`
   font-weight: 800;
 `;
 
-function Card({ text, image }) {
+function Card({ text, image, link }) {
+  const navigateTo = useNavigate();
+
+  const handleClick = () => {
+    navigateTo(link);
+  };
   return (
-    <CardContainer image={image}>
+    <CardContainer onClick={handleClick} image={image}>
       <CardText>{text}</CardText>
     </CardContainer>
   );
