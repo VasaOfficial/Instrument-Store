@@ -5,7 +5,7 @@ import styled from 'styled-components';
 // styles
 const NavbarContainer = styled.div`
   background-color: #101840;
-  height: 60px;
+  height: 90px;
   width: 100%;
   position: fixed;
   top: 0;
@@ -22,10 +22,28 @@ const LogoText = styled.div`
 
 const LinkContainer = styled.div`
   a {
+    text-decoration: none;
+    position: relative;
     font-size: 18px;
     color: #ffb020;
-    margin-right: 20px;
+    margin-right: 70px;
     text-decoration: none;
+  }
+
+  a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #ffb020;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    transition: width 0.3s ease-in-out;
+  }
+
+  a:hover::after {
+    width: 100%;
   }
 `;
 
