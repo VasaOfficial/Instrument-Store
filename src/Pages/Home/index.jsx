@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Navbar from '../../components/Navigation';
 import Card from '../../components/HomeCards';
 
+// styles
 const HomePageContainer = styled.div`
   background-image: url(https://images.unsplash.com/photo-1495567720989-cebdbdd97913?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);
   height: 100vh;
@@ -49,6 +50,7 @@ const ScrollButton = styled.button`
   font-size: 20px;
   padding: 10px 20px;
   margin-top: 20px;
+  border: none;
   border-radius: 5px;
   cursor: pointer;
   transform: scale(1);
@@ -67,6 +69,7 @@ const BottomContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 10%;
+  background-color: whitesmoke;
 `;
 
 function HomePage() {
@@ -91,9 +94,18 @@ function HomePage() {
         </MiddleContainer>
       </HomePageContainer>
       <BottomContainer>
-        <Card />
-        <Card />
-        <Card />
+        <Card
+          image="https://images.unsplash.com/photo-1460036521480-ff49c08c2781?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1173&q=80"
+          text="Stringed instruments"
+        />
+        <Card
+          image="https://images.unsplash.com/photo-1520614233149-f698fd8379e4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1605&q=80"
+          text="Wind instruments"
+        />
+        <Card
+          image="https://images.unsplash.com/photo-1571327073757-71d13c24de30?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+          text="Percussion instruments"
+        />
       </BottomContainer>
     </>
   );
