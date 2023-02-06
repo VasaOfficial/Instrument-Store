@@ -6,6 +6,7 @@ const ArticleContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 50px;
+  gap: 50px;
 `;
 
 const CardContainer = styled.div`
