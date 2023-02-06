@@ -14,8 +14,8 @@ const CardContainer = styled.div`
   border-radius: 8px;
   background-image: linear-gradient(
       to bottom,
-      rgba(0, 0, 0, 0.52),
-      rgba(45, 45, 45, 0.73)
+      rgba(0, 0, 0, 0.2),
+      rgba(45, 45, 45, 0.2)
     ),
     url(${(props) => props.image});
   background-size: cover;
@@ -40,27 +40,41 @@ const CardContainer = styled.div`
 const CardInfoContainer = styled.div`
   display: grid;
   justify-content: center;
-  border: 1px solid black;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 `;
 
 const CardInfoText = styled.p`
-  color: black;
+  color: #101840;
+  display: grid;
+  justify-content: space-between;
+  text-align: center;
+  gap: 10px;
+  font-size: 1.3rem;
+
+  input {
+    width: 100px;
+    height: 20px;
+  }
 `;
 
 const CardInfoPriceAdd = styled.button`
   color: white;
+  background-color: #101840;
+  cursor: pointer;
+  max-width: 108px;
+  padding: 8px;
+  font-size: 1.1rem;
 `;
 
-function ShopCard({ image, name, description, price }) {
+function ShopCard({ image, name, price }) {
   return (
     <ArticleContainer>
       <CardContainer image={image} />
       <CardInfoContainer>
         <CardInfoText>
           {name} <br />
-          {description} <br />
           {price} <br />
-          <input type="range" min="0" max="10" value="0" />
+          <input type="number" min="0" max="10" />
           <CardInfoPriceAdd>Add to Cart</CardInfoPriceAdd>
         </CardInfoText>
       </CardInfoContainer>
