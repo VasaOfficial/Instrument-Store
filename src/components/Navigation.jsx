@@ -53,7 +53,7 @@ function Navbar() {
       <LogoText>Music Emporium</LogoText>
       <LinkContainer>
         <Link to="/home">Home</Link>
-        <Link to="/shop">Cart</Link>
+        <Link to="/cart">Cart</Link>
         <Link to="/about">About</Link>
       </LinkContainer>
     </NavbarContainer>
