@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const ArticleContainer = styled.div`
@@ -67,6 +67,12 @@ const CardInfoPriceAdd = styled.button`
 `;
 
 function ShopCard({ image, name, price }) {
+  const [quantity, setQuantity] = useState(0);
+
+  const handleAddToCart = () => {
+    setQuantity(Number(document.querySelector('input[type="number"]').value));
+  };
+
   return (
     <ArticleContainer>
       <CardContainer image={image} />
@@ -74,8 +80,16 @@ function ShopCard({ image, name, price }) {
         <CardInfoText>
           {name} <br />
           {price} <br />
-          <input type="number" min="0" max="10" />
-          <CardInfoPriceAdd>Add to Cart</CardInfoPriceAdd>
+          <input
+            type="number"
+            min="1"
+            max="10"
+            value={quantity}
+            onChange={(event) => setQuantity(event.target.value)}
+          />
+          <CardInfoPriceAdd onClick={handleAddToCart}>
+            Add to Cart
+          </CardInfoPriceAdd>
         </CardInfoText>
       </CardInfoContainer>
     </ArticleContainer>
