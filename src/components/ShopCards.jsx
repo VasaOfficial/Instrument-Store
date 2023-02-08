@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
 
 const ArticleContainer = styled.div`
   display: flex;
@@ -66,11 +67,18 @@ const CardInfoPriceAdd = styled.button`
   font-size: 1.1rem;
 `;
 
+const addToCart = (item, quantity) => ({
+  type: 'ADD_TO_CART',
+  payload: { item, quantity },
+});
+
 function ShopCard({ image, name, price }) {
+  const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(0);
 
   const handleAddToCart = () => {
     setQuantity(Number(document.querySelector('input[type="number"]').value));
+    dispatch(addToCart({ name, price }, quantity));
   };
 
   return (
