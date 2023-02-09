@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React from 'react';
 import { useDispatch } from 'react-redux';
+import styled from 'styled-components';
+import { addToCart } from '../features/cartSlice';
 
 const ArticleContainer = styled.div`
   display: flex;
@@ -67,18 +68,11 @@ const CardInfoPriceAdd = styled.button`
   font-size: 1.1rem;
 `;
 
-const addToCart = (item, quantity) => ({
-  type: 'ADD_TO_CART',
-  payload: { item, quantity },
-});
-
 function ShopCard({ image, name, price }) {
   const dispatch = useDispatch();
-  const [quantity, setQuantity] = useState(0);
 
-  const handleAddToCart = () => {
-    setQuantity(Number(document.querySelector('input[type="number"]').value));
-    dispatch(addToCart({ name, price }, quantity));
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
   };
 
   return (
@@ -88,14 +82,8 @@ function ShopCard({ image, name, price }) {
         <CardInfoText>
           {name} <br />
           {price} <br />
-          <input
-            type="number"
-            min="1"
-            max="10"
-            value={quantity}
-            onChange={(event) => setQuantity(event.target.value)}
-          />
-          <CardInfoPriceAdd onClick={handleAddToCart}>
+          <input type="number" min="1" max="10" value="0" />
+          <CardInfoPriceAdd onClick={() => handleAddToCart()}>
             Add to Cart
           </CardInfoPriceAdd>
         </CardInfoText>
