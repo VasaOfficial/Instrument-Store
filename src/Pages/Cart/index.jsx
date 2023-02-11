@@ -1,5 +1,4 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { React, useState } from 'react';
 import styled from 'styled-components';
 
 import Navbar from '../../components/Navigation';
@@ -68,23 +67,16 @@ const BuyButton = styled.button`
 `;
 
 function Cart() {
-  const dispatch = useDispatch();
-  const cart = useSelector((state) => state.cart);
-  const items = useSelector((state) => state.items);
+  const [cart, setCart] = useState([
+    { id: 1, name: 'Item 1', price: 9.99 },
+    { id: 2, name: 'Item 2', price: 5.99 },
+    { id: 3, name: 'Item 3', price: 3.99 },
+  ]);
 
-  let totalPrice = 0;
-
-  let cartWithItems = [];
-  if (items) {
-    cartWithItems = cart.map((cartItem) => {
-      const itemInCart = items.find((item) => item.id === cartItem.itemId);
-      totalPrice += itemInCart.price * cartItem.quantity;
-      return { ...itemInCart, quantity: cartItem.quantity };
-    });
-  }
+  const totalPrice = cart.reduce((acc, item) => acc + item.price, 0);
 
   const handleRemove = (itemId) => {
-    dispatch({ type: 'REMOVE_FROM_CART', payload: itemId });
+    setCart((prevCart) => prevCart.filter((item) => item.id !== itemId));
   };
 
   return (
@@ -93,10 +85,10 @@ function Cart() {
       <CartContainer>
         <CartHeader>Shopping Cart</CartHeader>
         <CartList>
-          {cartWithItems.map((item) => (
+          {cart.map((item) => (
             <CartItem key={item.id}>
               <ItemName>{item.name}</ItemName>
-              <ItemPrice>${(item.price * item.quantity).toFixed(2)}</ItemPrice>
+              <ItemPrice>${item.price.toFixed(2)}</ItemPrice>
               <RemoveButton onClick={() => handleRemove(item.id)}>
                 Remove
               </RemoveButton>

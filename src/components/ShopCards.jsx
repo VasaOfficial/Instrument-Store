@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
 import { addToCart } from '../features/cartSlice';
 
 const ArticleContainer = styled.div`
@@ -70,11 +70,11 @@ const CardInfoPriceAdd = styled.button`
 
 function ShopCard({ image, name, price }) {
   const dispatch = useDispatch();
+  const [amount, setAmount] = React.useState(1);
 
-  const handleAddToCart = (product) => {
-    dispatch(addToCart(product));
+  const handleAddToCart = () => {
+    dispatch(addToCart({ name, price, amount }));
   };
-
   return (
     <ArticleContainer>
       <CardContainer image={image} />
@@ -82,8 +82,14 @@ function ShopCard({ image, name, price }) {
         <CardInfoText>
           {name} <br />
           {price} <br />
-          <input type="number" min="1" max="10" value="0" />
-          <CardInfoPriceAdd onClick={() => handleAddToCart()}>
+          <input
+            type="number"
+            min="1"
+            max="10"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+          />
+          <CardInfoPriceAdd onClick={handleAddToCart}>
             Add to Cart
           </CardInfoPriceAdd>
         </CardInfoText>
