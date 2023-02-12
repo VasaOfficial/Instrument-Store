@@ -1,5 +1,5 @@
-import { React, useState } from 'react';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 
 import Navbar from '../../components/Navigation';
 
@@ -66,42 +66,41 @@ const BuyButton = styled.button`
   width: 100%;
 `;
 
+const EmptyCartText = styled.h3`
+  text-align: center;
+`;
+
 function Cart() {
-  const [cart, setCart] = useState([
-    { id: 1, name: 'Item 1', price: 9.99 },
-    { id: 2, name: 'Item 2', price: 5.99 },
-    { id: 3, name: 'Item 3', price: 3.99 },
-  ]);
-
-  const totalPrice = cart.reduce((acc, item) => acc + item.price, 0);
-
-  const handleRemove = (itemId) => {
-    setCart((prevCart) => prevCart.filter((item) => item.id !== itemId));
-  };
+  const items = useSelector((state) => state.cart.items);
+  const totalPrice = items.reduce((acc, item) => acc + item.price, 0);
 
   return (
     <>
       <Navbar />
       <CartContainer>
         <CartHeader>Shopping Cart</CartHeader>
-        <CartList>
-          {cart.map((item) => (
-            <CartItem key={item.id}>
-              <ItemName>{item.name}</ItemName>
-              <ItemPrice>${item.price.toFixed(2)}</ItemPrice>
-              <RemoveButton onClick={() => handleRemove(item.id)}>
-                Remove
-              </RemoveButton>
-            </CartItem>
-          ))}
-        </CartList>
-        <div style={{ textAlign: 'right' }}>
-          <span style={{ fontWeight: 'bold' }}>Total:</span>
-          <span style={{ fontWeight: 'bold', color: '#f00' }}>
-            ${totalPrice.toFixed(2)}
-          </span>
-        </div>
-        <BuyButton>Buy</BuyButton>
+        {items.length === 0 ? (
+          <EmptyCartText>The Cart Is Empty</EmptyCartText>
+        ) : (
+          <>
+            <CartList>
+              {items.map((item) => (
+                <CartItem key={item.id}>
+                  <ItemName>{item.name}</ItemName>
+                  <ItemPrice>${item.price.toFixed(2)}</ItemPrice>
+                  <RemoveButton>Remove</RemoveButton>
+                </CartItem>
+              ))}
+            </CartList>
+            <div style={{ textAlign: 'right' }}>
+              <span style={{ fontWeight: 'bold' }}>Total:</span>
+              <span style={{ fontWeight: 'bold', color: '#f00' }}>
+                ${totalPrice.toFixed(2)}
+              </span>
+            </div>
+            <BuyButton>Buy</BuyButton>
+          </>
+        )}
       </CartContainer>
     </>
   );
