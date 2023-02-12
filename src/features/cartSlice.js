@@ -2,11 +2,15 @@ import { createSlice, configureStore, combineReducers } from '@reduxjs/toolkit';
 
 const cartSlice = createSlice({
   name: 'cart',
-  initialState: { items: [] },
+  initialState: [],
   reducers: {
     addToCart: (state, action) => {
       const { name, price, amount } = action.payload;
-      state.items.push({ name, price, amount });
+      state.push({ id: Date.now(), name, price: parseFloat(price), amount });
+    },
+    removeFromCart: (state, action) => {
+      const index = state.findIndex((item) => item.id === action.payload);
+      state.splice(index, 1);
     },
   },
 });
@@ -19,4 +23,4 @@ export const store = configureStore({
   reducer: rootReducer,
 });
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, removeFromCart } = cartSlice.actions;

@@ -1,7 +1,8 @@
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Navbar from '../../components/Navigation';
+import { removeFromCart } from '../../features/cartSlice';
 
 const CartContainer = styled.div`
   width: 500px;
@@ -70,25 +71,43 @@ const EmptyCartText = styled.h3`
   text-align: center;
 `;
 
+const ItemAmount = styled.span`
+  color: #f00;
+`;
+
 function Cart() {
-  const items = useSelector((state) => state.cart.items);
-  const totalPrice = items.reduce((acc, item) => acc + item.price, 0);
+  const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+
+  const totalPrice = cart.reduce(
+    (total, item) => total + item.price * item.amount,
+    0
+  );
+
+  const handleRemove = (id) => {
+    dispatch(removeFromCart(id));
+  };
 
   return (
     <>
       <Navbar />
       <CartContainer>
         <CartHeader>Shopping Cart</CartHeader>
-        {items.length === 0 ? (
+        {!Array.isArray(cart) || cart.length === 0 ? (
           <EmptyCartText>The Cart Is Empty</EmptyCartText>
         ) : (
           <>
             <CartList>
-              {items.map((item) => (
+              {cart.map((item) => (
                 <CartItem key={item.id}>
                   <ItemName>{item.name}</ItemName>
-                  <ItemPrice>${item.price.toFixed(2)}</ItemPrice>
-                  <RemoveButton>Remove</RemoveButton>
+                  <ItemAmount>{item.amount}</ItemAmount>
+                  <ItemPrice>
+                    ${(item.price * item.amount).toFixed(2)}
+                  </ItemPrice>
+                  <RemoveButton onClick={() => handleRemove(item.id)}>
+                    Remove
+                  </RemoveButton>
                 </CartItem>
               ))}
             </CartList>
