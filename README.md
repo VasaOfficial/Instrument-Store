@@ -1,6 +1,6 @@
 # **Istrument store**
 
-This is a web application for an instrument shop where users can browse different types of instruments, add them or remove them from the cart. The application is built using JavaScript and the React web framework.
+This is a web application for an instrument shop where users can browse different types of instruments, add them or remove them from the cart. The application is built using TypeScript and the React web framework.
 
 ## Features
 * Browse instruments by category
@@ -11,6 +11,7 @@ This is a web application for an instrument shop where users can browse differen
 
 ## Technologies Used
 * React
+* TypeScript
 * Node
 * Express
 * Vite
