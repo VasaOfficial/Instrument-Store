@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Navbar from '../../components/Navigation';
-import { removeFromCart } from '../../features/cartSlice';
+import { CartState, removeFromCart } from '../../features/cartSlice';
 
 const CartContainer = styled.div`
   width: 500px;
@@ -76,15 +76,15 @@ const ItemAmount = styled.span`
 `;
 
 function Cart() {
-  const cart = useSelector((state) => state.cart);
+  const cart = useSelector((state: {cart: CartState}) => state.cart);
   const dispatch = useDispatch();
 
   const totalPrice = cart.reduce(
-    (total, item) => total + item.price * item.amount,
+    (total: number, item: any) => total + item.price * item.amount,
     0
   );
 
-  const handleRemove = (id) => {
+  const handleRemove = (id: number) => {
     dispatch(removeFromCart(id));
   };
 

@@ -90,7 +90,7 @@ function ShopCard({ image, name, price }: ShopCardProps) {
       <CardInfoContainer>
         <CardInfoText>
           {name} <br />
-          {price} <br />
+          {price}$ <br />
           <input
             type="number"
             min="1"

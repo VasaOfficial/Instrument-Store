@@ -1,13 +1,13 @@
 import { createSlice, configureStore, combineReducers, PayloadAction } from '@reduxjs/toolkit';
 
 interface CartItem {
-  id?: number;
+  id: number;
   name: string;
   price: number;
   amount: number;
 }
 
-interface CartState extends Array<CartItem> {}
+export interface CartState extends Array<CartItem> {}
 
 export const cartSlice = createSlice({
   name: 'cart',
