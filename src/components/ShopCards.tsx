@@ -1,8 +1,17 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../features/cartSlice';
+
+interface ShopCardProps {
+  image: string;
+  name: string;
+  price: number;
+}
+
+interface CardContainerProps {
+  image: string;
+}
 
 const ArticleContainer = styled.div`
   display: flex;
@@ -11,7 +20,7 @@ const ArticleContainer = styled.div`
   gap: 50px;
 `;
 
-const CardContainer = styled.div`
+const CardContainer = styled.div<CardContainerProps>`
   background-color: #fff;
   border-radius: 8px;
   background-image: linear-gradient(
@@ -68,9 +77,9 @@ const CardInfoPriceAdd = styled.button`
   font-size: 1.1rem;
 `;
 
-function ShopCard({ image, name, price }) {
+function ShopCard({ image, name, price }: ShopCardProps) {
   const dispatch = useDispatch();
-  const [amount, setAmount] = React.useState(1);
+  const [amount, setAmount] = React.useState<number>(1);
 
   const handleAddToCart = () => {
     dispatch(addToCart({ name, price, amount }));
@@ -87,7 +96,7 @@ function ShopCard({ image, name, price }) {
             min="1"
             max="10"
             value={amount}
-            onChange={(e) => setAmount(e.target.value)}
+            onChange={(e) => setAmount(Number(e.target.value))}
           />
           <CardInfoPriceAdd onClick={handleAddToCart}>
             Add to Cart

@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 import Navbar from '../../components/Navigation';
@@ -72,7 +71,7 @@ const BottomContainer = styled.div`
   background-color: whitesmoke;
 `;
 
-function HomePage() {
+function HomePage(): JSX.Element {
   const scrollToBottom = () => {
     window.scrollTo(0, document.body.scrollHeight);
   };

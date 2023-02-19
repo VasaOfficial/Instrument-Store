@@ -1,6 +1,8 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+
+// interface for props
+interface NavbarProps {}
 
 // styles
 const NavbarContainer = styled.div`
@@ -47,7 +49,8 @@ const LinkContainer = styled.div`
   }
 `;
 
-function Navbar() {
+// component
+function Navbar(props: NavbarProps) {
   return (
     <NavbarContainer>
       <LogoText>Music Emporium</LogoText>

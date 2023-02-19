@@ -1,9 +1,13 @@
-/* eslint-disable react/prop-types */
-import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
-const CardContainer = styled.div`
+interface CardProps {
+  text: string;
+  image: string;
+  link: string;
+}
+
+const CardContainer = styled.div<{ image: string }>`
   background-color: #fff;
   border-radius: 8px;
   background-image: linear-gradient(
@@ -42,7 +46,7 @@ const CardText = styled.p`
   font-weight: 800;
 `;
 
-function Card({ text, image, link }) {
+function Card({ text, image, link }: CardProps) {
   const navigateTo = useNavigate();
 
   const handleClick = () => {
